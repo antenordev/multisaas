@@ -32,7 +32,7 @@ services:
         image: phpmyadmin
         restart: always
         links:
-            - db
+            - dbase
         ports:
             - 8080:80
         environment:
