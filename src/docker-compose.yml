@@ -7,8 +7,10 @@ services:
         volumes:
             - ./db_data:/var/lib/mysql
         restart: always
+        ports:
+            - 3306:3306
         environment:
-            MYSQL_ROOT_PASSWORD: '1234'
+            MYSQL_ROOT_PASSWORD: 1234
             MYSQL_DATABASE: app_wp
             MYSQL_USER: dev
             MYSQL_PASSWORD: development
@@ -18,7 +20,7 @@ services:
             - dbase
         image: wordpress:latest
         ports:
-            - "80:80"
+            - 80:80
         restart: always
         environment:
             WORDPRESS_DB_HOST: dbase:3306
