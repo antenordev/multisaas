@@ -1,2 +1,2 @@
-src/*
-!src/docker-compose.yml
+/services/*
+!/services/*.json
