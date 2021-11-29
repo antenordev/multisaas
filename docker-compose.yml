@@ -1,0 +1,50 @@
+version: '3.3'
+
+services:
+
+  mysql:
+    container_name: ${MYSQL_CONTAINER_NAME}
+    image: mysql:5.7
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_EXTERNAL_PORT}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./services/db_data:/var/lib/mysql
+    restart: always
+    networks:
+      - multisite
+
+  phpmyadmin:
+    container_name: ${PHPMYADMIN_CONTAINER_NAME}
+    image: phpmyadmin
+    ports:
+      - ${PHPMYADMIN_PORT}:${PHPMYADMIN_EXTERNAL_PORT}
+    environment:
+      - PMA_ARBITRARY=1
+    restart: always
+    networks:
+      - multisite
+
+  wordpress:
+    container_name: ${WORDPRESS_CONTAINER_NAME}
+    image: wordpress:latest
+    ports:
+      - ${WORDPRESS_PORT}:${WORDPRESS_EXTERNAL_PORT}
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+    volumes:
+      - ./services/app:/var/www/html
+    restart: always
+    networks:
+      - multisite
+
+networks:
+  multisite:
+    driver: bridge
