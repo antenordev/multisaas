@@ -6,7 +6,7 @@ services:
     container_name: ${MYSQL_CONTAINER_NAME}
     image: mysql:5.7
     ports:
-      - ${MYSQL_PORT}:${MYSQL_EXTERNAL_PORT}
+      - ${MYSQL_PORT}
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -22,7 +22,7 @@ services:
     container_name: ${PHPMYADMIN_CONTAINER_NAME}
     image: phpmyadmin
     ports:
-      - ${PHPMYADMIN_PORT}:${PHPMYADMIN_EXTERNAL_PORT}
+      - ${PHPMYADMIN_EXTERNAL_PORT}:${PHPMYADMIN_INTERNAL_PORT}
     environment:
       - PMA_ARBITRARY=1
     restart: always
@@ -33,7 +33,7 @@ services:
     container_name: ${WORDPRESS_CONTAINER_NAME}
     image: wordpress:latest
     ports:
-      - ${WORDPRESS_PORT}:${WORDPRESS_EXTERNAL_PORT}
+      - ${WORDPRESS_EXTERNAL_PORT}:${WORDPRESS_INTERNAL_PORT}
     environment:
       WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
       WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
