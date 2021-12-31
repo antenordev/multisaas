@@ -16,7 +16,7 @@ services:
       - ./services/db_data:/var/lib/mysql
     restart: always
     networks:
-      - multisite
+      - multisaas
 
   phpmyadmin:
     container_name: ${PHPMYADMIN_CONTAINER_NAME}
@@ -27,7 +27,7 @@ services:
       - PMA_ARBITRARY=1
     restart: always
     networks:
-      - multisite
+      - multisaas
 
   wordpress:
     container_name: ${WORDPRESS_CONTAINER_NAME}
@@ -44,8 +44,8 @@ services:
       - ./services/app:/var/www/html
     restart: always
     networks:
-      - multisite
+      - multisaas
 
 networks:
-  multisite:
+  multisaas:
     driver: bridge

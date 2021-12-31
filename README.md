@@ -50,13 +50,13 @@ Apagar Imagem
 docker rmi -f IMAGE_NAME
 ```
 
-Deletar Todos os containers
+Parar Todos os containers
 
 ```
 docker stop $(docker ps -a -q)
 ```
 
-Depois:
+Deletar Todos os containers
 
 ```
 docker rm -f $(docker ps -a -q)
